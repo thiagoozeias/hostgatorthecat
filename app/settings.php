@@ -1,5 +1,6 @@
 <?php
-declare(strict_types=1);
+
+declare(strict_types = 1);
 
 use DI\ContainerBuilder;
 use Monolog\Logger;
@@ -14,6 +15,9 @@ return function (ContainerBuilder $containerBuilder) {
                 'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
                 'level' => Logger::DEBUG,
             ],
+        ],
+        "db" => [
+            $db = new PDO("sqlite:/db.sqlite3")
         ],
     ]);
 };
